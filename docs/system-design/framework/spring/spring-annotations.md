@@ -2,51 +2,74 @@
 ### 文章目录
 <!-- TOC -->
 
-- [文章目录](#%e6%96%87%e7%ab%a0%e7%9b%ae%e5%bd%95)
-- [0.前言](#0%e5%89%8d%e8%a8%80)
+- [文章目录](#文章目录)
+- [0.前言](#0前言)
 - [1. `@SpringBootApplication`](#1-springbootapplication)
-- [2. Spring Bean 相关](#2-spring-bean-%e7%9b%b8%e5%85%b3)
+- [2. Spring Bean 相关](#2-spring-bean-相关)
   - [2.1. `@Autowired`](#21-autowired)
   - [2.2. `@Component`,`@Repository`,`@Service`, `@Controller`](#22-componentrepositoryservice-controller)
   - [2.3. `@RestController`](#23-restcontroller)
   - [2.4. `@Scope`](#24-scope)
   - [2.5. `@Configuration`](#25-configuration)
-- [3. 处理常见的 HTTP 请求类型](#3-%e5%a4%84%e7%90%86%e5%b8%b8%e8%a7%81%e7%9a%84-http-%e8%af%b7%e6%b1%82%e7%b1%bb%e5%9e%8b)
-  - [3.1. GET 请求](#31-get-%e8%af%b7%e6%b1%82)
-  - [3.2. POST 请求](#32-post-%e8%af%b7%e6%b1%82)
-  - [3.3. PUT 请求](#33-put-%e8%af%b7%e6%b1%82)
-  - [3.4. **DELETE 请求**](#34-delete-%e8%af%b7%e6%b1%82)
-  - [3.5. **PATCH 请求**](#35-patch-%e8%af%b7%e6%b1%82)
-- [4. 前后端传值](#4-%e5%89%8d%e5%90%8e%e7%ab%af%e4%bc%a0%e5%80%bc)
-  - [4.1. `@PathVariable` 和 `@RequestParam`](#41-pathvariable-%e5%92%8c-requestparam)
+- [3. 处理常见的 HTTP 请求类型](#3-处理常见的-http-请求类型)
+  - [3.1. GET 请求](#31-get-请求)
+  - [3.2. POST 请求](#32-post-请求)
+  - [3.3. PUT 请求](#33-put-请求)
+  - [3.4. **DELETE 请求**](#34-delete-请求)
+  - [3.5. **PATCH 请求**](#35-patch-请求)
+- [4. 前后端传值](#4-前后端传值)
+  - [4.1. `@PathVariable` 和 `@RequestParam`](#41-pathvariable-和-requestparam)
   - [4.2. `@RequestBody`](#42-requestbody)
-- [5. 读取配置信息](#5-%e8%af%bb%e5%8f%96%e9%85%8d%e7%bd%ae%e4%bf%a1%e6%81%af)
-  - [5.1. `@value`(常用)](#51-value%e5%b8%b8%e7%94%a8)
-  - [5.2. `@ConfigurationProperties`(常用)](#52-configurationproperties%e5%b8%b8%e7%94%a8)
-  - [5.3. `PropertySource`（不常用）](#53-propertysource%e4%b8%8d%e5%b8%b8%e7%94%a8)
-- [6. 参数校验](#6-%e5%8f%82%e6%95%b0%e6%a0%a1%e9%aa%8c)
-  - [6.1. 一些常用的字段验证的注解](#61-%e4%b8%80%e4%ba%9b%e5%b8%b8%e7%94%a8%e7%9a%84%e5%ad%97%e6%ae%b5%e9%aa%8c%e8%af%81%e7%9a%84%e6%b3%a8%e8%a7%a3)
-  - [6.2. 验证请求体(RequestBody)](#62-%e9%aa%8c%e8%af%81%e8%af%b7%e6%b1%82%e4%bd%93requestbody)
-  - [6.3. 验证请求参数(Path Variables 和 Request Parameters)](#63-%e9%aa%8c%e8%af%81%e8%af%b7%e6%b1%82%e5%8f%82%e6%95%b0path-variables-%e5%92%8c-request-parameters)
-- [7. 全局处理 Controller 层异常](#7-%e5%85%a8%e5%b1%80%e5%a4%84%e7%90%86-controller-%e5%b1%82%e5%bc%82%e5%b8%b8)
-- [8. JPA 相关](#8-jpa-%e7%9b%b8%e5%85%b3)
-  - [8.1. 创建表](#81-%e5%88%9b%e5%bb%ba%e8%a1%a8)
-  - [8.2. 创建主键](#82-%e5%88%9b%e5%bb%ba%e4%b8%bb%e9%94%ae)
-  - [8.3. 设置字段类型](#83-%e8%ae%be%e7%bd%ae%e5%ad%97%e6%ae%b5%e7%b1%bb%e5%9e%8b)
-  - [8.4. 指定不持久化特定字段](#84-%e6%8c%87%e5%ae%9a%e4%b8%8d%e6%8c%81%e4%b9%85%e5%8c%96%e7%89%b9%e5%ae%9a%e5%ad%97%e6%ae%b5)
-  - [8.5. 声明大字段](#85-%e5%a3%b0%e6%98%8e%e5%a4%a7%e5%ad%97%e6%ae%b5)
-  - [8.6. 创建枚举类型的字段](#86-%e5%88%9b%e5%bb%ba%e6%9e%9a%e4%b8%be%e7%b1%bb%e5%9e%8b%e7%9a%84%e5%ad%97%e6%ae%b5)
-  - [8.7. 增加审计功能](#87-%e5%a2%9e%e5%8a%a0%e5%ae%a1%e8%ae%a1%e5%8a%9f%e8%83%bd)
-  - [8.8. 删除/修改数据](#88-%e5%88%a0%e9%99%a4%e4%bf%ae%e6%94%b9%e6%95%b0%e6%8d%ae)
-  - [8.9. 关联关系](#89-%e5%85%b3%e8%81%94%e5%85%b3%e7%b3%bb)
-- [9. 事务 `@Transactional`](#9-%e4%ba%8b%e5%8a%a1-transactional)
-- [10. json 数据处理](#10-json-%e6%95%b0%e6%8d%ae%e5%a4%84%e7%90%86)
-  - [10.1. 过滤 json 数据](#101-%e8%bf%87%e6%bb%a4-json-%e6%95%b0%e6%8d%ae)
-  - [10.2. 格式化 json 数据](#102-%e6%a0%bc%e5%bc%8f%e5%8c%96-json-%e6%95%b0%e6%8d%ae)
-  - [10.3. 扁平化对象](#103-%e6%89%81%e5%b9%b3%e5%8c%96%e5%af%b9%e8%b1%a1)
-- [11. 测试相关](#11-%e6%b5%8b%e8%af%95%e7%9b%b8%e5%85%b3)
+- [5. 读取配置信息](#5-读取配置信息)
+  - [5.1. `@value`(常用)](#51-value常用)
+  - [5.2. `@ConfigurationProperties`(常用)](#52-configurationproperties常用)
+  - [5.3. `PropertySource`（不常用）](#53-propertysource不常用)
+- [6. 参数校验](#6-参数校验)
+  - [6.1. 一些常用的字段验证的注解](#61-一些常用的字段验证的注解)
+  - [6.2. 验证请求体(RequestBody)](#62-验证请求体requestbody)
+  - [6.3. 验证请求参数(Path Variables 和 Request Parameters)](#63-验证请求参数path-variables-和-request-parameters)
+- [7. 全局处理 Controller 层异常](#7-全局处理-controller-层异常)
+- [8. JPA 相关](#8-jpa-相关)
+  - [8.1. 创建表](#81-创建表)
+  - [8.2. 创建主键](#82-创建主键)
+  - [8.3. 设置字段类型](#83-设置字段类型)
+  - [8.4. 指定不持久化特定字段](#84-指定不持久化特定字段)
+  - [8.5. 声明大字段](#85-声明大字段)
+  - [8.6. 创建枚举类型的字段](#86-创建枚举类型的字段)
+  - [8.7. 增加审计功能](#87-增加审计功能)
+  - [8.8. 删除/修改数据](#88-删除修改数据)
+  - [8.9. 关联关系](#89-关联关系)
+- [9. 事务 `@Transactional`](#9-事务-transactional)
+- [10. json 数据处理](#10-json-数据处理)
+  - [10.1. 过滤 json 数据](#101-过滤-json-数据)
+  - [10.2. 格式化 json 数据](#102-格式化-json-数据)
+  - [10.3. 扁平化对象](#103-扁平化对象)
+- [11. 测试相关](#11-测试相关)
 
 <!-- /TOC -->
+
+
+@Data
+使用这个注解，就不用再去手写Getter,Setter,equals,canEqual,hasCode,toString等方法了，注解后在编译时会自动加进去。
+
+@AllArgsConstructor
+使用后添加一个构造函数，该构造函数含有所有已声明字段属性参数
+
+@NoArgsConstructor
+使用后创建一个无参构造函数
+
+@Builder
+关于Builder较为复杂一些，Builder的作用之一是为了解决在某个类有很多构造函数的情况，也省去写很多构造函数的麻烦，在设计模式中的思想是：用一个内部类去实例化一个对象，避免一个类出现过多构造函数，
+
+对象属性	@ApiModelProperty	用在出入参数对象的字段上
+协议集描述	@Api	用于controller类上
+协议描述	@ApiOperation	用在controller的方法上
+Response集	@ApiResponses	用在controller的方法上
+Response	@ApiResponse	用在 @ApiResponses里边
+非对象参数集	@ApiImplicitParams	用在controller的方法上
+非对象参数描述	@ApiImplicitParam	用在@ApiImplicitParams的方法里边
+描述返回对象的意义	@ApiModel	用在返回对象类上
+
 ### 0.前言
 
 _大家好，我是 Guide 哥！这是我的 221 篇优质原创文章。如需转载，请在文首注明地址，蟹蟹！_
@@ -112,6 +135,7 @@ public @interface SpringBootConfiguration {
 ### 2. Spring Bean 相关
 
 #### 2.1. `@Autowired`
+如果提示不能自动装配，使用@Resource等替换即可。
 
 自动导入对象到类中，被注入进的类同样要被 Spring 容器管理比如：Service 类注入到 Controller 类中。
 
